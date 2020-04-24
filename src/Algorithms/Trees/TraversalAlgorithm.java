@@ -53,7 +53,7 @@ public class TraversalAlgorithm {
         if (root == null) {
             return;
         }
-        Stack<Node> stack = new Stack<>(Node.class);
+        Stack<Node> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
             Node node = stack.pop();
