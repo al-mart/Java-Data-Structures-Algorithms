@@ -41,4 +41,27 @@ public class MinHeap<T extends Comparable> extends Heap<T> {
             siftUp(parentIndex);
         }
     }
+
+    public T maxElement(){
+        int firstLeafIndex = ( array.length - 1 ) / 2;
+        T maxElement = array[firstLeafIndex];
+        for(int i = firstLeafIndex; i < array.length; i++){
+            maxElement = array[i].compareTo(maxElement) > 0 ? array[i] : maxElement;
+        }
+        return maxElement;
+    }
+
+    public static void KlargestElements(int [] stream, int k ) throws Exception{
+        MinHeap<Integer> heap = new MinHeap(Integer.class, stream.length);
+        for(int i = 0; i < k; i++){
+            heap.insert( stream[i] );
+            heap.siftUp(heap.getCount() - 1);
+        }
+        for(int i = k; i < stream.length; i++){
+            if(heap.getElementAtIndex(0) < stream[i]){
+                heap.setElementAtIndex(stream[i],0);
+                heap.siftDown(0);
+            }
+        }
+    }
 }
